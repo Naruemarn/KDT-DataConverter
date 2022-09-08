@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32616.157
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KDT-DataConverter", "KDT-DataConverter\KDT-DataConverter.csproj", "{A5B71A9B-B5F3-4BDC-A0E5-FEB4CC7504E5}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup", "Setup\Setup.vdproj", "{007FF867-64D2-49AB-BD46-6DD248486C1C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A5B71A9B-B5F3-4BDC-A0E5-FEB4CC7504E5}.Debug|Any CPU.ActiveCfg = Release|Any CPU
+		{A5B71A9B-B5F3-4BDC-A0E5-FEB4CC7504E5}.Debug|Any CPU.Build.0 = Release|Any CPU
+		{A5B71A9B-B5F3-4BDC-A0E5-FEB4CC7504E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5B71A9B-B5F3-4BDC-A0E5-FEB4CC7504E5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{007FF867-64D2-49AB-BD46-6DD248486C1C}.Debug|Any CPU.ActiveCfg = Debug
+		{007FF867-64D2-49AB-BD46-6DD248486C1C}.Release|Any CPU.ActiveCfg = Debug
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D0D3AE5D-813E-4C65-ACD9-DEF1000CD2D1}
+	EndGlobalSection
+EndGlobal
