@@ -513,7 +513,16 @@ namespace RTCM3
         void replace_BNX_KDT(string path)
         {
             string text = File.ReadAllText(path);
-            text = text.Replace(".BNX", ".KDT");
+
+            if (inputType_ini == "BINEX")
+            {
+                text = text.Replace(".BNX", ".KDT");
+            }
+            else
+            {
+                text = text.Replace(".rtcm", ".KDT");
+            }
+
             File.WriteAllText(path, text);            
         }
         //-----------------------------------------------------------------------------------------------------------------------
