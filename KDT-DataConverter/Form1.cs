@@ -84,16 +84,17 @@ namespace RTCM3
 
                 if (inputType_ini == "RTCM")// RTCM to RINEX
                 {
-                    string[] _rtcmFile = Directory.GetFiles(extractPath, "*.rtcm");
-                    //ToProcess(_rtcmFile, _iniFile, extractPath, antenna_H);
-                    ToProcess(_rtcmFile, _iniFile, outputpath + @"\" + filenameNoKDT, antenna_H);
+                    string[] listfiles = Directory.GetFiles(extractPath, "*.rtcm");
+                    string rtcmfile = listfiles[0];
+
+                    ToProcess(rtcmfile, _iniFile, outputpath + @"\" + filenameNoKDT, antenna_H);
                 }
                 else// BINEX to RINEX
                 {
-                    string[] _binexFile = Directory.GetFiles(extractPath, "*.BNX");
-                    string filetype = _binexFile[0].Substring(_binexFile[0].Length - 6);
-                    //ToProcess(_binexFile, _iniFile, extractPath, antenna_H);
-                    ToProcess(_binexFile, _iniFile, outputpath + @"\" + filenameNoKDT, antenna_H);
+                    string[] listfiles = Directory.GetFiles(extractPath, "*.BNX");
+                    string binexfile = listfiles[0];
+
+                    ToProcess(binexfile, _iniFile, outputpath + @"\" + filenameNoKDT, antenna_H);
                 }
 
             }
@@ -252,7 +253,7 @@ namespace RTCM3
         }        
         //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
         //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-        void ToProcess(string[] _file, string[] _iniFile, string output, string height)
+        void ToProcess(string _file, string[] _iniFile, string output, string height)
         {
             string outputOBS = output + ".obs";
             string outputNAV = output + ".nav";
@@ -267,7 +268,7 @@ namespace RTCM3
                 File.Delete(outputNAV);
             }
 
-            ConvertToRinex(_file[0], outputOBS, outputNAV, height);
+            ConvertToRinex(_file, outputOBS, outputNAV, height);
 
             label2.Text = outputOBS;
         }
@@ -509,8 +510,18 @@ namespace RTCM3
         }
         //-----------------------------------------------------------------------------------------------------------------------
         //-----------------------------------------------------------------------------------------------------------------------
+        void replace_BNX_KDT(string path)
+        {
+            string text = File.ReadAllText(path);
+            text = text.Replace(".BNX", ".KDT");
+            File.WriteAllText(path, text);            
+        }
+        //-----------------------------------------------------------------------------------------------------------------------
+        //-----------------------------------------------------------------------------------------------------------------------
         void ReplaceTextFile(string path)
         {
+            replace_BNX_KDT(path);
+
             bool res = SearchStringInTextFile(path);
 
             byte[] file = System.IO.File.ReadAllBytes(path);
