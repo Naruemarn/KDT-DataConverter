@@ -520,7 +520,7 @@ namespace RTCM3
             }
             else
             {
-                text = text.Replace(".rtcm", ".KDT");
+                text = text.Replace(".rtcm", ".KDT ");
             }
 
             File.WriteAllText(path, text);            
