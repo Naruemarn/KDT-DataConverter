@@ -23,7 +23,7 @@ namespace RTCM3
         public static string antennaName2_ini = null;
         public static string antennaHeight_ini = null;
         public static string serialNo_ini = null;
-        public static string recerveSN_ini = null;
+        public static string recerveSN_ini = "";
         public static string inputType_ini = null;
         public static string dataInterval_ini = null;
 
@@ -65,10 +65,7 @@ namespace RTCM3
                 string[] _iniFile = Directory.GetFiles(extractPath, "*.ini");
 
                 read_ini_config(_iniFile[0]);
-
-
                 
-
 
                 if (antennaName2_ini == "Antenna Bottom")
                 {
@@ -181,6 +178,16 @@ namespace RTCM3
                 recerveSN_ini = cn_file["CONFIG"]["recerveSN"];
                 inputType_ini = cn_file["CONFIG"]["outputType"];
                 dataInterval_ini = cn_file["CONFIG"]["dataInterval"];
+
+                if(recerveSN_ini == null)
+                {
+                    recerveSN_ini = " ";
+                }
+
+                if (textBox1.Text.Length >= 1)
+                {
+                    antennaName1_ini = textBox1.Text;
+                }
             }
             catch (Exception h)
             {
@@ -351,8 +358,12 @@ namespace RTCM3
                     {
                         try
                         {
+                            if (Directory.Exists(extractPath))
+                            {
+                                Directory.Delete(extractPath, true);
+                            }
 
-                            Directory.Delete(extractPath, true);
+                            timer1.Enabled = false;
 
                             // Replace text
                             string path = outputpath + @"\" + filenameNoKDT + ".obs";
@@ -364,9 +375,15 @@ namespace RTCM3
 
                             DialogResult res = MessageBox.Show("Done", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             label2.Text = outputpath;
+
+                            timer1.Enabled = true;
+
                             step = 0;
                         }
-                        catch { }
+                        catch (Exception ex) 
+                        {
+                            MessageBox.Show(ex.ToString());
+                        }
                     }
                     break;
                 default:
@@ -529,126 +546,133 @@ namespace RTCM3
         //-----------------------------------------------------------------------------------------------------------------------
         void ReplaceTextFile(string path)
         {
-            replace_BNX_KDT(path);
-
-            bool res = SearchStringInTextFile(path);
-
-            byte[] file = System.IO.File.ReadAllBytes(path);
-
-            // Replace text to RINEX file
-
-            byte[] RUNBY = new byte[60];        // 60 Bytes for RUN BY
-            byte[] FORMAT = new byte[60];        // 60 Bytes for Format
-
-
-            byte[] REC = new byte[20];          // 20 Bytes for REC #
-            byte[] TYPE = new byte[20];         // 20 Bytes for TYPE 
-            byte[] VERSION = new byte[20];      // 20 Bytes for TYPE 
-
-            //---------------------------------------------------------------
-
-            // Clear
-            for (int i = 0; i < 60; i++)
+            try
             {
-                RUNBY[i] = 0x20;
-                FORMAT[i] = 0x20;
-            }
+                replace_BNX_KDT(path);
 
-            // Clear
-            for (int i = 0; i < 20; i++)
-            {
-                REC[i] = 0x20;
-                TYPE[i] = 0x20;
-                VERSION[i] = 0x20;
-            }
+                bool res = SearchStringInTextFile(path);
 
-            //---------------------------------------------------------------
+                byte[] file = System.IO.File.ReadAllBytes(path);
 
-            // RUN BY
-            byte[] runby_byte = Encoding.ASCII.GetBytes("KDT-DataConverter 1.00");
-            for (int i = 0; i < runby_byte.Length; i++)
-            {
-                RUNBY[i] = runby_byte[i];
-            }
+                // Replace text to RINEX file
 
-            // FORMAT
-            byte[] format_byte = Encoding.ASCII.GetBytes("format: KDT");
-            for (int i = 0; i < format_byte.Length; i++)
-            {
-                FORMAT[i] = format_byte[i];
-            }
-
-            // Convert string to bytes array
-            byte[] rec_byte = Encoding.ASCII.GetBytes(recerveSN_ini);
-            for (int i = 0; i < rec_byte.Length; i++)
-            {
-                REC[i] = rec_byte[i];
-            }
-
-            //---------------------------------------------------------------
-
-            int runby_startindex = 82;
-            int format_startindex = 164;
-            int rec_startindex = 656;
-            int type_startindex = 676;
-            int version_startindex = 696;
+                byte[] RUNBY = new byte[60];        // 60 Bytes for RUN BY
+                byte[] FORMAT = new byte[60];        // 60 Bytes for Format
 
 
+                byte[] REC = new byte[20];          // 20 Bytes for REC #
+                byte[] TYPE = new byte[20];         // 20 Bytes for TYPE 
+                byte[] VERSION = new byte[20];      // 20 Bytes for TYPE 
 
-            if (res) // if found "TRIMBLE BD990"
-            {
-                // Replace to RUN BY
+                //---------------------------------------------------------------
+
+                // Clear
                 for (int i = 0; i < 60; i++)
                 {
-                    file[runby_startindex + i] = RUNBY[i];             // Start Index 82
+                    RUNBY[i] = 0x20;
+                    FORMAT[i] = 0x20;
                 }
 
-                // Replace to FORMAT
-                for (int i = 0; i < 60; i++)
-                {
-                    file[format_startindex + i] = FORMAT[i];             // Start Index 164
-                }
-
-                // convert string to array
-                byte[] type_byte = Encoding.ASCII.GetBytes("P2 GNSS");
-                for (int i = 0; i < type_byte.Length; i++)
-                {
-                    TYPE[i] = type_byte[i];
-                }
-
-                // Replace
+                // Clear
                 for (int i = 0; i < 20; i++)
                 {
-                    file[rec_startindex + i] = REC[i];              // Start Index 656
-                    file[type_startindex + i] = TYPE[i];            // Start Index 676
-                    file[version_startindex + i] = VERSION[i];      // Start Index 696
+                    REC[i] = 0x20;
+                    TYPE[i] = 0x20;
+                    VERSION[i] = 0x20;
                 }
+
+                //---------------------------------------------------------------
+
+                // RUN BY
+                byte[] runby_byte = Encoding.ASCII.GetBytes("KDT-DataConverter 1.00");
+                for (int i = 0; i < runby_byte.Length; i++)
+                {
+                    RUNBY[i] = runby_byte[i];
+                }
+
+                // FORMAT
+                byte[] format_byte = Encoding.ASCII.GetBytes("format: KDT");
+                for (int i = 0; i < format_byte.Length; i++)
+                {
+                    FORMAT[i] = format_byte[i];
+                }
+
+                // Convert string to bytes array
+                byte[] rec_byte = Encoding.ASCII.GetBytes(recerveSN_ini);
+                for (int i = 0; i < rec_byte.Length; i++)
+                {
+                    REC[i] = rec_byte[i];
+                }
+
+                //---------------------------------------------------------------
+
+                int runby_startindex = 82;
+                int format_startindex = 164;
+                int rec_startindex = 656;
+                int type_startindex = 676;
+                int version_startindex = 696;
+
+
+
+                if (res) // if found "TRIMBLE BD990"
+                {
+                    // Replace to RUN BY
+                    for (int i = 0; i < 60; i++)
+                    {
+                        file[runby_startindex + i] = RUNBY[i];             // Start Index 82
+                    }
+
+                    // Replace to FORMAT
+                    for (int i = 0; i < 60; i++)
+                    {
+                        file[format_startindex + i] = FORMAT[i];             // Start Index 164
+                    }
+
+                    // convert string to array
+                    byte[] type_byte = Encoding.ASCII.GetBytes("P2 GNSS");
+                    for (int i = 0; i < type_byte.Length; i++)
+                    {
+                        TYPE[i] = type_byte[i];
+                    }
+
+                    // Replace
+                    for (int i = 0; i < 20; i++)
+                    {
+                        file[rec_startindex + i] = REC[i];              // Start Index 656
+                        file[type_startindex + i] = TYPE[i];            // Start Index 676
+                        file[version_startindex + i] = VERSION[i];      // Start Index 696
+                    }
+                }
+                else
+                {
+                    // Replace to RUN BY
+                    for (int i = 0; i < 60; i++)
+                    {
+                        file[runby_startindex + i] = RUNBY[i];                  // Start Index 82
+                    }
+
+                    // Replace to FORMAT
+                    for (int i = 0; i < 60; i++)
+                    {
+                        file[format_startindex + i] = FORMAT[i];                // Start Index 164
+                    }
+
+                    // Replace to REC
+                    for (int i = 0; i < 20; i++)
+                    {
+                        file[rec_startindex + i] = REC[i];                      // Start Index 656
+                    }
+                }
+
+                //---------------------------------------------------------------
+
+                // Overwrite
+                File.WriteAllBytes(path, file);
             }
-            else
+            catch (Exception ex)
             {
-                // Replace to RUN BY
-                for (int i = 0; i < 60; i++)
-                {
-                    file[runby_startindex + i] = RUNBY[i];                  // Start Index 82
-                }
-
-                // Replace to FORMAT
-                for (int i = 0; i < 60; i++)
-                {
-                    file[format_startindex + i] = FORMAT[i];                // Start Index 164
-                }
-
-                // Replace to REC
-                for (int i = 0; i < 20; i++)
-                {
-                    file[rec_startindex + i] = REC[i];                      // Start Index 656
-                }
+                MessageBox.Show(ex.ToString());
             }
-
-            //---------------------------------------------------------------
-
-            // Overwrite
-            File.WriteAllBytes(path, file);
         }
         //-----------------------------------------------------------------------------------------------------------------------
         //-----------------------------------------------------------------------------------------------------------------------

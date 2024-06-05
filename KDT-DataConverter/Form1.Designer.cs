@@ -46,23 +46,25 @@
             this.progressBar_Total = new System.Windows.Forms.ProgressBar();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.BackColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(80, 53);
+            this.label1.Location = new System.Drawing.Point(103, 103);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(407, 23);
+            this.label1.Size = new System.Drawing.Size(379, 23);
             this.label1.TabIndex = 3;
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label2
             // 
             this.label2.BackColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(80, 84);
+            this.label2.Location = new System.Drawing.Point(103, 134);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(407, 23);
+            this.label2.Size = new System.Drawing.Size(379, 23);
             this.label2.TabIndex = 6;
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -70,7 +72,7 @@
             // 
             this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.button3.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.button3.Location = new System.Drawing.Point(18, 53);
+            this.button3.Location = new System.Drawing.Point(30, 103);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(56, 23);
             this.button3.TabIndex = 25;
@@ -91,7 +93,7 @@
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(80, 16);
+            this.comboBox1.Location = new System.Drawing.Point(103, 16);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(56, 23);
             this.comboBox1.TabIndex = 29;
@@ -127,7 +129,7 @@
             // button2
             // 
             this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.button2.Location = new System.Drawing.Point(18, 84);
+            this.button2.Location = new System.Drawing.Point(30, 134);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(56, 23);
             this.button2.TabIndex = 36;
@@ -140,23 +142,23 @@
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(12, 16);
+            this.label3.Location = new System.Drawing.Point(30, 16);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(56, 23);
+            this.label3.Size = new System.Drawing.Size(67, 23);
             this.label3.TabIndex = 38;
-            this.label3.Text = "USB Drive";
+            this.label3.Text = "USB Drive:";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // progressBar_Individual
             // 
-            this.progressBar_Individual.Location = new System.Drawing.Point(129, 135);
+            this.progressBar_Individual.Location = new System.Drawing.Point(124, 185);
             this.progressBar_Individual.Name = "progressBar_Individual";
             this.progressBar_Individual.Size = new System.Drawing.Size(358, 23);
             this.progressBar_Individual.TabIndex = 41;
             // 
             // progressBar_Total
             // 
-            this.progressBar_Total.Location = new System.Drawing.Point(129, 164);
+            this.progressBar_Total.Location = new System.Drawing.Point(124, 214);
             this.progressBar_Total.Name = "progressBar_Total";
             this.progressBar_Total.Size = new System.Drawing.Size(358, 23);
             this.progressBar_Total.TabIndex = 42;
@@ -166,7 +168,7 @@
             this.label4.BackColor = System.Drawing.Color.Transparent;
             this.label4.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(18, 164);
+            this.label4.Location = new System.Drawing.Point(13, 214);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(105, 23);
             this.label4.TabIndex = 43;
@@ -178,19 +180,41 @@
             this.label5.BackColor = System.Drawing.Color.Transparent;
             this.label5.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(18, 135);
+            this.label5.Location = new System.Drawing.Point(13, 185);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(105, 23);
             this.label5.TabIndex = 44;
             this.label5.Text = "Extract - Individual";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(103, 57);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(171, 23);
+            this.textBox1.TabIndex = 46;
+            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label6
+            // 
+            this.label6.BackColor = System.Drawing.Color.Transparent;
+            this.label6.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label6.ForeColor = System.Drawing.Color.White;
+            this.label6.Location = new System.Drawing.Point(5, 56);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(92, 23);
+            this.label6.TabIndex = 47;
+            this.label6.Text = "Antenna Name:";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DodgerBlue;
-            this.ClientSize = new System.Drawing.Size(506, 192);
+            this.ClientSize = new System.Drawing.Size(493, 248);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.progressBar_Total);
@@ -205,9 +229,10 @@
             this.MaximizeBox = false;
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "KDT-DataConverter V1.00";
+            this.Text = "KDT-DataConverter V1.01";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -228,5 +253,7 @@
         private ProgressBar progressBar_Total;
         private Label label4;
         private Label label5;
+        private TextBox textBox1;
+        private Label label6;
     }
 }
