@@ -371,6 +371,12 @@ namespace RTCM3
 
                             //Move .kdt to Output Folder
                             string destination = outputpath + @"\" + filenameNoKDT + ".kdt";
+
+                            if (File.Exists(destination))
+                            {
+                                File.Delete(destination);
+                            }
+
                             File.Move(kdtfile, destination);
 
                             DialogResult res = MessageBox.Show("Done", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);

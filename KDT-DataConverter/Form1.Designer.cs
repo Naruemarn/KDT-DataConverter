@@ -191,8 +191,10 @@
             // 
             this.textBox1.Location = new System.Drawing.Point(103, 57);
             this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
             this.textBox1.Size = new System.Drawing.Size(171, 23);
             this.textBox1.TabIndex = 46;
+            this.textBox1.Text = "CHCC220GR2      CHCD";
             this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label6
