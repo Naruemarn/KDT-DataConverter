@@ -367,7 +367,12 @@ namespace RTCM3
 
                             // Replace text
                             string path = outputpath + @"\" + filenameNoKDT + ".obs";
-                            ReplaceTextFile(path); 
+                            ReplaceTextFile(path);
+
+                            // Rename Extension file
+                            string path_rename = outputpath + @"\" + filenameNoKDT;
+                            File.Move(path_rename + ".obs", path_rename + ".24o");
+                            File.Move(path_rename + ".nav", path_rename + ".24n");
 
                             //Move .kdt to Output Folder
                             string destination = outputpath + @"\" + filenameNoKDT + ".kdt";
