@@ -48,7 +48,6 @@
             this.label5 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -65,7 +64,7 @@
             this.label2.BackColor = System.Drawing.Color.White;
             this.label2.Location = new System.Drawing.Point(103, 134);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(379, 23);
+            this.label2.Size = new System.Drawing.Size(379, 55);
             this.label2.TabIndex = 6;
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -152,14 +151,14 @@
             // 
             // progressBar_Individual
             // 
-            this.progressBar_Individual.Location = new System.Drawing.Point(124, 185);
+            this.progressBar_Individual.Location = new System.Drawing.Point(123, 217);
             this.progressBar_Individual.Name = "progressBar_Individual";
             this.progressBar_Individual.Size = new System.Drawing.Size(358, 23);
             this.progressBar_Individual.TabIndex = 41;
             // 
             // progressBar_Total
             // 
-            this.progressBar_Total.Location = new System.Drawing.Point(124, 214);
+            this.progressBar_Total.Location = new System.Drawing.Point(123, 246);
             this.progressBar_Total.Name = "progressBar_Total";
             this.progressBar_Total.Size = new System.Drawing.Size(358, 23);
             this.progressBar_Total.TabIndex = 42;
@@ -169,7 +168,7 @@
             this.label4.BackColor = System.Drawing.Color.Transparent;
             this.label4.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(13, 214);
+            this.label4.Location = new System.Drawing.Point(12, 246);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(105, 23);
             this.label4.TabIndex = 43;
@@ -181,7 +180,7 @@
             this.label5.BackColor = System.Drawing.Color.Transparent;
             this.label5.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(13, 185);
+            this.label5.Location = new System.Drawing.Point(12, 217);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(105, 23);
             this.label5.TabIndex = 44;
@@ -210,23 +209,12 @@
             this.label6.Text = "Antenna Name:";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(382, 36);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 48;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DodgerBlue;
-            this.ClientSize = new System.Drawing.Size(493, 248);
-            this.Controls.Add(this.button1);
+            this.ClientSize = new System.Drawing.Size(493, 307);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label5);
@@ -269,6 +257,5 @@
         private Label label5;
         private TextBox textBox1;
         private Label label6;
-        private Button button1;
     }
 }

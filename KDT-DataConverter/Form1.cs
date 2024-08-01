@@ -277,7 +277,10 @@ namespace RTCM3
 
             ConvertToRinex(_file, outputOBS, outputNAV, height);
 
-            label2.Text = outputOBS;
+            string output_24o = output + ".24o";
+            string output_24n = output + ".24n";
+
+            label2.Text = output_24o + "\r\n" + output_24n;
         }
         //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
         //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -386,8 +389,19 @@ namespace RTCM3
                             lineChanger(lines[2], path_nav, 3);
                             lineChanger(lines[3], path_nav, 4);
 
-                            // Rename Extension file
+                            // Delete old file and Rename Extension file
                             string path_rename = outputpath + @"\" + filenameNoKDT;
+
+                            if (File.Exists(path_rename + ".24o"))
+                            {
+                                File.Delete(path_rename + ".24o");
+                            }
+
+                            if (File.Exists(path_rename + ".24n"))
+                            {
+                                File.Delete(path_rename + ".24n");
+                            }
+
                             File.Move(path_rename + ".obs", path_rename + ".24o");
                             File.Move(path_rename + ".nav", path_rename + ".24n");
 
@@ -612,7 +626,7 @@ namespace RTCM3
                 //---------------------------------------------------------------
 
                 // RUN BY
-                byte[] runby_byte = Encoding.ASCII.GetBytes("KDT-DataConverter 1.00");
+                byte[] runby_byte = Encoding.ASCII.GetBytes("KDT-DataConverter 1.01");
                 for (int i = 0; i < runby_byte.Length; i++)
                 {
                     RUNBY[i] = runby_byte[i];
