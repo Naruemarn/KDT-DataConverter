@@ -343,6 +343,14 @@ namespace RTCM3
         }
         //-----------------------------------------------------------------------------------------------------------------------
         //-----------------------------------------------------------------------------------------------------------------------
+        static void lineChanger(string newText, string fileName, int line_to_edit)
+        {
+            string[] arrLine = File.ReadAllLines(fileName);
+            arrLine[line_to_edit - 1] = newText;
+            File.WriteAllLines(fileName, arrLine);
+        }
+        //-----------------------------------------------------------------------------------------------------------------------
+        //-----------------------------------------------------------------------------------------------------------------------
         private void timer1_Tick(object sender, EventArgs e)
         {
             switch (step)
@@ -366,8 +374,17 @@ namespace RTCM3
                             timer1.Enabled = false;
 
                             // Replace text
-                            string path = outputpath + @"\" + filenameNoKDT + ".obs";
-                            ReplaceTextFile(path);
+                            string path_obs = outputpath + @"\" + filenameNoKDT + ".obs";
+                            ReplaceTextFile(path_obs);
+
+                            // Read .obs file
+                            var lines = File.ReadAllLines(path_obs);
+
+                            // Replace text in .nav file
+                            string path_nav = outputpath + @"\" + filenameNoKDT + ".nav";
+                            lineChanger(lines[1], path_nav, 2);
+                            lineChanger(lines[2], path_nav, 3);
+                            lineChanger(lines[3], path_nav, 4);
 
                             // Rename Extension file
                             string path_rename = outputpath + @"\" + filenameNoKDT;
@@ -684,6 +701,12 @@ namespace RTCM3
             {
                 MessageBox.Show(ex.ToString());
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            
+
         }
         //-----------------------------------------------------------------------------------------------------------------------
         //-----------------------------------------------------------------------------------------------------------------------
